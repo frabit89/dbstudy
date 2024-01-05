@@ -92,5 +92,9 @@ WHERE SALARY > (SELECT MAX(SALARY)
                                          WHERE DEPARTMENT_NAME = 'Marketing'));
 
 -- 10. 11 ~ 20번째로 입사한 사원을 조회하시오.
-
+SELECT EMPLOYEE_ID, HIRE_DATE
+  FROM (SELECT ROW_NUMBER() OVER(ORDER BY HIRE_DATE ASC) AS RN, EMPLOYEE_ID, HIRE_DATE
+        FROM EMPLOYEES)
+  WHERE RN BETWEEN 11 AND 20 ;
+                    
 
